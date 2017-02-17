@@ -30,14 +30,17 @@ func main() {
 	inputInt, _ = strconv.Atoi(input)
 
 	// If statements in go follow the usual syntax:
-	// if [condition] {
+	// if [optional statement]; [condition] {
 	// } else if [condition] {
 	// } else {
 	// }
-	if int(inputInt) == 2 {
-		fmt.Println("Correct!")
-	} else if inputInt > 0 && inputInt < 4 {
-		fmt.Println("Close!")
+	//
+	// Optional statements are only executed when the if statement
+	// is executed.
+	if response := "Correct!"; int(inputInt) == 2 {
+		fmt.Println(response)
+	} else if response := "Close!"; inputInt > 0 && inputInt < 4 {
+		fmt.Println(response)
 	} else {
 		fmt.Println("Wrong!")
 	}
