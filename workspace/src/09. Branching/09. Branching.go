@@ -10,6 +10,22 @@ import (
 	"strings"
 )
 
+// Switches can also be used to determine type of variables.
+// In this example, we take in an interface (i.e. void pointer)
+// and write out the type.
+func DetectType(x interface{}) {
+	switch x.(type) {
+	case int:
+		fmt.Println("Int")
+	case string:
+		fmt.Println("String")
+	case float32:
+		fmt.Println("Float32")
+	default:
+		fmt.Println("Unknown")
+	}
+}
+
 func main() {
 	// Read from commandline using the bufio library.
 	// We create a Reader object...
@@ -37,6 +53,7 @@ func main() {
 	//
 	// Optional statements are only executed when the if statement
 	// is executed.
+	fmt.Println("Using IF/ELSE IF/ELSE")
 	if response := "Correct!"; int(inputInt) == 2 {
 		fmt.Println(response)
 	} else if response := "Close!"; inputInt > 0 && inputInt < 4 {
@@ -44,4 +61,31 @@ func main() {
 	} else {
 		fmt.Println("Wrong!")
 	}
+
+	// The same thing above, using a SWITCH statement
+	fmt.Println("\nUsing SWITCH")
+	switch inputInt {
+	case 2:
+		fmt.Println("Correct!")
+	case 1, 3:
+		fmt.Println("Close!")
+	default:
+		fmt.Println("Wrong!")
+	}
+
+	// The same thing above, using an EMPTY SWITCH statement
+	fmt.Println("\nUsing EMPTY SWITCH")
+	switch {
+	case inputInt == 2:
+		fmt.Println("Correct!")
+	case inputInt > 0 && inputInt < 4:
+		fmt.Println("Close!")
+	default:
+		fmt.Println("Wrong!")
+	}
+
+	fmt.Println("\nDetecting variable types")
+	DetectType("xyz123")
+	DetectType(55)
+	DetectType(105.4)
 }
